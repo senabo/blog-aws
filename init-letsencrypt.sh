@@ -7,8 +7,8 @@ fi
 
 domains=(blog.senabo.space www.blog.senabo.space)
 rsa_key_size=4096
-data_path="./data/certbot"
-email="" # Adding a valid address is strongly recommended
+data_path="./webserver/certbot/"
+email="senabo33@gmail.com" # Adding a valid address is strongly recommended
 staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits
 
 if [ -d "$data_path" ]; then
