@@ -3,7 +3,6 @@ version: '3'
 
 services:
   backend:
-    restart: unless-stopped
     build:
       context: ./blog_backend
       args:
@@ -24,10 +23,8 @@ services:
       - build_folder:/frontend/build
   nginx:
     image: nginx:latest
-    restart: unless-stopped
     ports:
       - 80:8080
-      - 433:433
     volumes:
       - ./webserver/nginx-dev.conf:/etc/nginx/conf.d/default.conf:ro
       - build_folder:/var/www/frontend
@@ -35,13 +32,6 @@ services:
     depends_on:
       - backend
       - frontend
-  certbot:
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - ./webserver/certbot/conf:/etc/letsencrypt
-      - ./webserver/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 volumes:
   static_volume:
   build_folder:
