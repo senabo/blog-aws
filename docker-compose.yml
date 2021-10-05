@@ -11,16 +11,16 @@ services:
         - static_volume:/backend/var/django_static
     env_file:
         - ./.env
-    depends_on:
-      - db
-    links:
-      - db
-  db:
-    image: postgres:13.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env
+#    depends_on:
+#      - db
+#    links:
+#      - db
+#  db:
+#    image: postgres:13.0-alpine
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data/
+#    env_file:
+#      - ./.env
   frontend:
     build:
       context: ./blog_frontend
@@ -42,4 +42,4 @@ services:
 volumes:
   static_volume:
   build_folder:
-  postgres_data:
+#  postgres_data:
