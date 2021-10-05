@@ -1,20 +1,17 @@
-
-version: '3'
+version: '3.8'
 
 services:
   backend:
     restart: unless-stopped
     build:
       context: ./blog_backend
-      args:
-        DJANGO_ALLOWED_HOSTS: $DJANGO_ALLOWED_HOSTS
-        DJANGO_SECRET_KEY: $DJANGO_SECRET_KEY
-        DJANGO_CORS_ORIGIN_WHITELIST: $DJANGO_CORS_ORIGIN_WHITELIST
     command: gunicorn blog_backend.wsgi --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     volumes:
       - static_volume:/backend/var/django_static
+    env_file:
+      - ./.env
   frontend:
     build:
       context: ./blog_frontend
