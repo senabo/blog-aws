@@ -5,11 +5,11 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(blog.senabo.space www.blog.senabo.space)
+domains=(blog.senabo.space www.blog.senabo.space) # Set your domains, like (example.com www.example.com)
 rsa_key_size=4096
 email="" # Adding a valid address is strongly recommended
-staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits
-compose_file=docker-compose-prod.yml # Set docker-compose file, by default is docker-compose.yml
+staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
+compose_file=docker-compose-prod.yml # Set docker-compose filename, by default is docker-compose.yml
 
 if `docker-compose -f $compose_file run --rm --entrypoint "[ -d /var/www/certbot/conf/live/$domains ]" certbot 2>/dev/null`; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/N) " decision
