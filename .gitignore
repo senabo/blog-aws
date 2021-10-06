@@ -89,6 +89,7 @@ blog_frontend/coverage
 
 # production
 blog_frontend/build
+certbot
 
 # misc
 .DS_Store
