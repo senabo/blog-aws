@@ -1,6 +1,9 @@
 import Types from "./types";
 import axios from "axios";
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 export const getPosts = () => {
     return dispatch => {
         dispatch({type:Types.POSTS_LOADING, payload:true})
